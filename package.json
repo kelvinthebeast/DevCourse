@@ -4,16 +4,17 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-  "start": "node --inspect src/index.js",
-  "dev": "nodemon --inspect src/index.js"
-},
-
+    "sass": "sass src/resources/scss/:src/public/css --watch",
+    "start": "node --inspect src/index.js",
+    "dev": "nodemon --inspect src/index.js"
+  },
   "dependencies": {
     "express": "^5.1.0",
     "express-handlebars": "^8.0.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "sass": "^1.89.2"
   }
 }

@@ -3,6 +3,9 @@ const app = express();
 const { engine } = require('express-handlebars');
 const morgan = require('morgan')
 const path = require('path');
+
+
+app.use(express.static(path.join(__dirname, 'public'))); 
 // http log
 app.use(morgan('combined'));
 const port = 1606;
