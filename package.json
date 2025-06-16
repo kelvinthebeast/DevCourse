@@ -1,0 +1,19 @@
+{
+  "name": "DevNote",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+  "start": "node --inspect src/index.js",
+  "dev": "nodemon --inspect src/index.js"
+},
+
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10"
+  }
+}
