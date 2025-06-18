@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../resources/scss/app.scss","../../resources/scss/_variable.scss"],"names":[],"mappings":"AAGA;EACE;EACA,kBCLU;;;ADOZ;EACE,OCRU;;;ADWZ;EACE;EACA;EACA","file":"app.css"}
+{"version":3,"sourceRoot":"","sources":["../../resources/scss/app.scss","../../resources/scss/_variable.scss"],"names":[],"mappings":"AAGA;EACE;EACA,kBCLU;;;ADOZ;EACE,OCRU","file":"app.css"}
