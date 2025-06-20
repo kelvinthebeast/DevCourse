@@ -1,27 +1,27 @@
 const express = require('express');
 const app = express();
 const { engine } = require('express-handlebars');
-const morgan = require('morgan')
+const morgan = require('morgan');
 const path = require('path');
 
 const route = require('./routes/index.route');
 
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, 'public')));
 // http log
 app.use(morgan('combined'));
 const port = 1606;
 
 // Set up view engine
-app.engine('.hbs', engine({ extname: '.hbs' }));  
+app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
-app.set('views', './views'); 
+app.set('views', './views');
 app.set('views', path.join(__dirname, 'resources/views'));
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded`
-app.use(express.json())
+app.use(express.json());
 
 // routes init
 route(app);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });

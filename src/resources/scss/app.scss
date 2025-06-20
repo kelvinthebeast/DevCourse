@@ -1,11 +1,9 @@
 @use 'variable';
 
-
 .test {
-  font-style: italic;
-  background-color: variable.$red-color;
+    font-style: italic;
+    background-color: variable.$red-color;
 }
 h1 {
-  color: variable.$red-color;
+    color: variable.$red-color;
 }
-
