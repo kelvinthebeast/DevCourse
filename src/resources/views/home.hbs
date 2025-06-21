@@ -1,16 +1,25 @@
 <div class="mt-4">
-  <div class="row">
+  <div class="row g-2"> 
     {{#each courses}}
-    <div class="col-sm-6 col-lg-4">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
-        <div class="card-body">
-          <h5 class="card-title">{{this.name}}</h5>
-          <p class="card-text">{{this.description}}</p>
-          <a href="#" class="btn btn-primary">Mua khóa học</a>
+      <div class="col-sm-6 col-lg-4 d-flex">
+        <div class="card flex-fill shadow-sm">
+          {{#if this.image}}
+            <a href="/courses/{{this.slug}}">
+              <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
+            </a>
+            
+          {{else}}
+            <img src="/default-image.png" class="card-img-top" alt="Default image">
+          {{/if}}
+          <div class="card-body d-flex flex-column">
+            <a href="/courses/{{this.slug}}">
+              <h5 class="card-title">{{this.name}}</h5>
+            </a>
+            <p class="card-text flex-grow-1">{{this.description}}</p>
+            <a href="#" class="btn btn-primary mt-auto">Mua khóa học</a>
+          </div>
         </div>
       </div>
-    </div>
     {{/each}}
   </div>
 </div>
