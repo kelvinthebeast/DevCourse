@@ -6,7 +6,7 @@ router.get("/create", CourseController.create)
 router.post("/store", CourseController.store)
 router.get("/:id/edit", CourseController.edit)
 router.patch("/:id", CourseController.update)
-
+router.delete("/:id/delete", CourseController.destroy)
 router.get('/:slug', CourseController.show);
 // router.get('/', newsController.index);
 
