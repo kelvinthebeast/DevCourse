@@ -3,7 +3,7 @@ const app = express();
 const { engine } = require('express-handlebars');
 const morgan = require('morgan');
 const path = require('path');
-
+const methodOverride = require('method-override')
 const route = require('./routes/index.route');
 const database = require("../src/config/db")
 
@@ -11,10 +11,19 @@ const database = require("../src/config/db")
 app.use(express.static(path.join(__dirname, 'public')));
 // http log
 app.use(morgan('combined'));
+// method overriding
+app.use(methodOverride('_method'))
 const port = 1606;
 database.connect()
 // Set up view engine
-app.engine('.hbs', engine({ extname: '.hbs' }));
+app.engine('.hbs', engine({ 
+    extname: '.hbs', 
+
+    helpers: {
+        sum: (a, b) => a + b         
+    }
+}   
+));
 app.set('view engine', '.hbs');
 app.set('views', './views');
 app.set('views', path.join(__dirname, 'resources','views'));

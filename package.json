@@ -20,6 +20,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "express-handlebars": "^8.0.2",
+    "method-override": "^3.0.0",
     "mongoose": "^5.13.23",
     "mongoose-slug-generator": "^1.0.4"
   },
