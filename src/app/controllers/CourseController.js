@@ -23,11 +23,11 @@ class CourseController {
   store(req, res, next) {
 
     // form data
-    const formData = req.body
-    formData.image =  `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`
-    const course = new Course(formData)
+   
+    req.body.image =  `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`
+    const course = new Course(req.body)
     course.save()
-      .then(() => res.redirect("/"))
+      .then(() => res.redirect("/me/stored/courses"))
       .catch((err) => console.log(err))
 
   }
@@ -61,7 +61,7 @@ class CourseController {
   // [DELETE] /courses/:id/force
   forceDestroy(req, res, next) {
     Course.deleteOne({_id: req.params.id})
-    .then(() => res.redirect("/"))
+    .then(() => res.redirect('/me/trash/courses'))
     .catch(next)
   }
 }
