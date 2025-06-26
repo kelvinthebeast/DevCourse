@@ -858,6 +858,11 @@ mongodb@3.7.4:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongoose-delete@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.npmjs.org/mongoose-delete/-/mongoose-delete-0.5.4.tgz"
+  integrity sha512-zKkcWFEwTneVG4Oiy+qJRJPFCiGlqOJToHeU3a3meJybWsHCnWxdHkGEkFWNY5cmYEv5av3WwByOhPlQ6I+FmQ==
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
@@ -872,7 +877,7 @@ mongoose-slug-generator@^1.0.4:
     shortid "^2.2.4"
     speakingurl "^7.0.0"
 
-mongoose@*, mongoose@^5.13.23:
+mongoose@*, mongoose@^5.13.23, "mongoose@4.x || 5.x || 6.x":
   version "5.13.23"
   resolved "https://registry.npmjs.org/mongoose/-/mongoose-5.13.23.tgz"
   integrity sha512-Q5bo1yYOcH2wbBPP4tGmcY5VKsFkQcjUDh66YjrbneAFB3vNKQwLvteRFLuLiU17rA5SDl3UMcMJLD9VS8ng2Q==

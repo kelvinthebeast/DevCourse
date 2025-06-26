@@ -1,9 +1,8 @@
 <div class="mt-4">
   <div>
-    <h3>Khoá học của tôi</h3>
-    <a href="/me/trash/courses">Thùng rác</a>
+    <a href="/me/stored/courses">Danh sách khóa học</a>
+    <h3>Khóa học đã xóa</h3>
   </div>
-  
   <table class="table">
     <thead>
       <tr>
@@ -22,14 +21,18 @@
         <td>{{this.level}}</td>
         <td>{{this.createdAt}}</td>
         <td>
-          <a href="/courses/{{this._id}}/edit" class="btn btn-link">sua</a>
-          <a href="/courses/{{this_id}}/delete" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">xoa</a>
+          <a href="" data-id="{{this._id}}" class="btn btn-link btn-restore">Khôi phục</a>
+          <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">Xóa vĩnh viễn</a>
         </td>
       </tr>
       {{else}}
 
         <tr class="text-center">
-          <th colspan="5">Bạn chưa đăng khóa học nào. <a href="/courses/create">Đăng khóa học</a></th>
+          <th colspan="5" class="text-center">
+            Bạn không còn khóa học nào trong thùng rác.
+            <br>
+            <a class="btn btn-sm btn-outline-primary mt-2" href="/me/stored/courses">Quay lại danh sách khóa học</a>
+          </th>
           
         </tr>
       {{/each}}
@@ -57,9 +60,11 @@
     </div>
   </div>
 </div>
-{{!-- delete hidden form --}}
+{{!-- form handle delete --}}
 <form name="delete-form" method="POST"  class="mt-4"></form>
 {{!-- action="/courses/{{this._id}}/delete?_method=DELETE": add action using js when delete --}}
+{{!-- form handle rstore --}}
+<form method="post" class="mt-4" name="restore-form"></form>
 <script>
 
 
@@ -70,6 +75,12 @@
     var deleteForm = document.forms['delete-form']
     const deleteModal = document.getElementById('delete-course-modal')
     const btnDeleteCourse = document.getElementById("btn-delete-course-modal")
+    // restored
+    var restoreBtn = $('.btn-restore');
+  
+    const restoreForm = document.forms["restore-form"]
+
+
     if (deleteModal) {
       // when delete modal click
       deleteModal.addEventListener('show.bs.modal', event => {
@@ -84,6 +95,16 @@
         
       })
     }
+
+    // restore button click
+    restoreBtn.click(function(event) {
+      event.preventDefault();
+      var courseId = $(this).data("id")
+
+      restoreForm.action = "/courses/" + courseId + "/restore?_method=PATCH"
+
+      restoreForm.submit();
+    })
     // when confirm click
     btnDeleteCourse.onclick = function() {
       deleteForm.action = "/courses/" + courseId + "?_method=DELETE"
@@ -91,5 +112,12 @@
       deleteForm.submit();
   
     }
+
+
+    
     })
+
+    
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
