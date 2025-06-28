@@ -1,4 +1,4 @@
-<div class="mt-4">
+<form class="mt-4" name="container-form" method="post" action="/courses/handle-form-actions">
   <div>
     <h3>Khoá học của tôi</h3>
     <a href="/me/trash/courses">Thùng rác ({{deletedCount}})</a>
@@ -12,12 +12,12 @@
         </label>
       </div>
 
-      <select class="form-select form-select-sm checkbox-select-all-options me-2" style="width: 150px;">
-        <option>-- Hành động --</option>
-        <option value="deleted">Xóa</option>
+      <select name="action" class="form-select form-select-sm checkbox-select-all-options me-2" style="width: 150px;" required>
+        <option value="">-- Hành động --</option>
+        <option value="delete">Xóa</option>
       </select>
 
-      <button class="btn btn-primary btn-sm disabled">Thực hiện</button>
+      <button class="btn btn-primary btn-sm btn-check-all-submit disabled">Thực hiện</button>
     </div>
   </div>
     
@@ -58,7 +58,7 @@
       {{/each}}
     </tbody>
   </table>
-</div>
+</form>
 
 {{!-- confirm delete notification  --}}
 
@@ -96,6 +96,11 @@
 
     const checkboxAll = $('#checkbox-all')   
     const courseItemsCheckBox = $('input[name="courseIds[]"]') 
+
+    const checkAllSubmitBtn = $('.btn-check-all-submit')
+
+
+    const containerForm = document.forms['container-form']
     if (deleteModal) {
       // when delete modal click
       deleteModal.addEventListener('show.bs.modal', event => {
@@ -122,6 +127,7 @@
     checkboxAll.change(function() {
       let isCheckedAll = $(this).prop("checked") // true false
       courseItemsCheckBox.prop('checked', isCheckedAll)
+      renderCheckAllSubmitBtn()
     })
 
     // handle checkbox item change
@@ -129,11 +135,29 @@
     courseItemsCheckBox.change(function() {
       let isCheckedAll = courseItemsCheckBox.length ===  $('input[name="courseIds[]"]:checked').length
       checkboxAll.prop("checked", isCheckedAll)
-    })
+      renderCheckAllSubmitBtn()
+    });
+    // handle submit btn clicked
 
+    checkAllSubmitBtn.on("submit", function(e) {
+      var isSubmittable = !$(this).hasClass('disabled')
+      if (!isSubmittable) {
+        e.preventDefault()
+      }
 
+    });
+    // re-render check all submit btn
+    function renderCheckAllSubmitBtn() {
+      var checkedCount = $('input[name="courseIds[]"]:checked').length // 7
+      if (checkedCount > 0 ) {
+        checkAllSubmitBtn.removeClass('disabled')
+      } else {
+        checkAllSubmitBtn.addClass('disabled')
 
+      }
+    }
 
+    
     
     })
 </script>

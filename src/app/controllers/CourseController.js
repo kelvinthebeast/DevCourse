@@ -46,7 +46,7 @@ class CourseController {
       .then(() => res.redirect("/me/stored/courses"))
       .catch(next)
   }
-  // [DELTE] /courses/:id/delete 
+  // [DELTE] /courses/:id
   destroy(req, res, next) {
     Course.delete({_id: req.params.id})
       .then(() => res.redirect(req.get('referer')))
@@ -64,6 +64,27 @@ class CourseController {
     .then(() => res.redirect('/me/trash/courses'))
     .catch(next)
   }
+
+
+  // [post] /courses/handle-form-actions 
+  handleFormActions(req, res, next) {
+    switch (req.body.action) {
+      case "delete":
+        Course.delete({_id: {$in: req.body.courseIds}})
+        .then(() => res.redirect(req.get('referer')))
+        .catch(next)
+        break;
+    
+      default:
+
+        res.json({ message: "Action is invalid"})
+        break;
+    }
+  }
+
 }
+
+
+
 
 module.exports = new CourseController;
