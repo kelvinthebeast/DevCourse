@@ -2,12 +2,30 @@
   <div>
     <h3>Khoá học của tôi</h3>
     <a href="/me/trash/courses">Thùng rác ({{deletedCount}})</a>
+
+
+    <div class="mt-4 d-flex align-items-center gap-2">
+      <div class="form-check me-2">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+        <label class="form-check-label" for="checkbox-all">
+          Chọn tất cả
+        </label>
+      </div>
+
+      <select class="form-select form-select-sm checkbox-select-all-options me-2" style="width: 150px;">
+        <option>-- Hành động --</option>
+        <option value="deleted">Xóa</option>
+      </select>
+
+      <button class="btn btn-primary btn-sm disabled">Thực hiện</button>
+    </div>
   </div>
+    
   
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col" colspan="2">#</th>
         <th scope="col">Tên khóa học</th>
         <th scope="col">Trình độ</th>
         <th scope="col">Thời gian tạo</th>
@@ -17,6 +35,11 @@
     <tbody>
       {{#each courses}}
       <tr>
+        <td>
+          <div class="form-check me-2">
+            <input class="form-check-input" type="checkbox"  name="courseIds[]" value="{{this._id}}">
+          </div>
+        </td>
         <th scope="row">{{sum @index 1}}</th>
         <td>{{this.name}}</td>
         <td>{{this.level}}</td>
@@ -70,6 +93,9 @@
     var deleteForm = document.forms['delete-form']
     const deleteModal = document.getElementById('delete-course-modal')
     const btnDeleteCourse = document.getElementById("btn-delete-course-modal")
+
+    const checkboxAll = $('#checkbox-all')   
+    const courseItemsCheckBox = $('input[name="courseIds[]"]') 
     if (deleteModal) {
       // when delete modal click
       deleteModal.addEventListener('show.bs.modal', event => {
@@ -91,5 +117,23 @@
       deleteForm.submit();
   
     }
+
+    // handle checkbox all change
+    checkboxAll.change(function() {
+      let isCheckedAll = $(this).prop("checked") // true false
+      courseItemsCheckBox.prop('checked', isCheckedAll)
+    })
+
+    // handle checkbox item change
+
+    courseItemsCheckBox.change(function() {
+      let isCheckedAll = courseItemsCheckBox.length ===  $('input[name="courseIds[]"]:checked').length
+      checkboxAll.prop("checked", isCheckedAll)
+    })
+
+
+
+
+    
     })
 </script>

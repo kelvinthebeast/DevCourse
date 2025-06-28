@@ -7,4 +7,16 @@ h1 {
   color: red;
 }
 
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.checkbox-select-all-options {
+  width: 140px;
+  margin: 0 8px;
+}
+
 /*# sourceMappingURL=app.css.map */
