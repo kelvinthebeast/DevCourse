@@ -1,7 +1,7 @@
 <div class="mt-4">
   <div>
     <h3>Khoá học của tôi</h3>
-    <a href="/me/trash/courses">Thùng rác</a>
+    <a href="/me/trash/courses">Thùng rác ({{deletedCount}})</a>
   </div>
   
   <table class="table">
@@ -22,8 +22,8 @@
         <td>{{this.level}}</td>
         <td>{{this.createdAt}}</td>
         <td>
-          <a href="/courses/{{this._id}}/edit" class="btn btn-link">sua</a>
-          <a href="/courses/{{this_id}}/delete" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">xoa</a>
+          <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+          <a href="/courses/{{this_id}}/delete" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">Xóa</a>
         </td>
       </tr>
       {{else}}
